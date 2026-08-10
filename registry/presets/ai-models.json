@@ -1,0 +1,25 @@
+{
+  "name": "ai-models",
+  "title": "AI Models & Providers",
+  "key": "slug",
+  "sort": ["provider", "slug"],
+  "group_by": "provider",
+  "display": ["model", "region", "price_in", "privacy"],
+  "export_columns": ["slug", "provider", "model", "region", "price_in", "price_out", "privacy", "used_by", "notes"],
+  "fields": [
+    {"name": "slug", "type": "text", "required": true},
+    {"name": "provider", "type": "enum", "open": true, "required": true,
+     "values": ["azure", "openrouter", "google", "anthropic", "openai", "self-hosted"]},
+    {"name": "model", "type": "text", "required": true},
+    {"name": "region", "type": "text", "desc": "EU / US / ... — matters for data residency"},
+    {"name": "price_in", "type": "number", "desc": "$ per million input tokens"},
+    {"name": "price_out", "type": "number"},
+    {"name": "privacy", "type": "enum", "values": ["compliant", "partial", "non-compliant", "unknown"],
+     "labels": {"compliant": "✅ Compliant", "partial": "⚠️ Partial", "non-compliant": "❌ Non-compliant", "unknown": "❓ Not checked"},
+     "default": "unknown", "desc": "Compliance with your privacy policy"},
+    {"name": "zdr", "type": "bool", "desc": "Zero Data Retention"},
+    {"name": "no_training", "type": "bool", "desc": "Provider does not train on your data"},
+    {"name": "used_by", "type": "list", "desc": "Projects"},
+    {"name": "notes", "type": "text"}
+  ]
+}

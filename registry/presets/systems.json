@@ -1,0 +1,32 @@
+{
+  "name": "systems",
+  "title": "Systems & Services",
+  "key": "slug",
+  "group_by": "category",
+  "sort": ["category", "slug"],
+  "display": ["name", "purpose", "owner", "status"],
+  "export_columns": ["name", "category", "purpose", "owner", "account", "cost_monthly", "status", "since", "notes"],
+  "fields": [
+    {"name": "slug", "type": "text", "required": true, "desc": "Short identifier"},
+    {"name": "name", "type": "text", "required": true, "desc": "System/service name"},
+    {"name": "purpose", "type": "text", "required": true, "desc": "What we use it for"},
+    {"name": "category", "type": "enum", "open": true, "required": true,
+     "values": ["ai", "infra", "saas", "domain", "payments", "monitoring", "other"],
+     "labels": {"ai": "🤖 AI/models", "infra": "🏗️ Infrastructure", "saas": "🧰 SaaS",
+                "domain": "🌐 Domain/DNS", "payments": "💳 Payments",
+                "monitoring": "📡 Monitoring", "other": "📦 Other"}},
+    {"name": "owner", "type": "text", "required": true, "desc": "Who is responsible on our side"},
+    {"name": "account", "type": "text", "desc": "Account name — never a password/key"},
+    {"name": "billing", "type": "text", "desc": "Billing method/account"},
+    {"name": "cost_monthly", "type": "number", "desc": "Monthly cost"},
+    {"name": "status", "type": "enum", "required": true, "default": "active",
+     "values": ["active", "partial", "planned", "retired"],
+     "labels": {"active": "🟢 Active", "partial": "🟡 Partial", "planned": "🔵 Planned", "retired": "⚪ Retired"}},
+    {"name": "since", "type": "date", "desc": "When we signed up"},
+    {"name": "renewal", "type": "date", "desc": "Renewal date"},
+    {"name": "projects", "type": "list", "desc": "Which projects use it"},
+    {"name": "repo", "type": "url"},
+    {"name": "secrets_location", "type": "text", "desc": "Where the key is stored — not the value itself"},
+    {"name": "notes", "type": "text"}
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "inventory",
+  "title": "Inventory",
+  "key": "slug",
+  "sort": ["storage", "slug"],
+  "group_by": "storage",
+  "display": ["name", "qty", "expiry"],
+  "export_columns": ["name", "storage", "qty", "unit", "expiry", "notes"],
+  "fields": [
+    {"name": "slug", "type": "text", "required": true},
+    {"name": "name", "type": "text", "required": true},
+    {"name": "storage", "type": "enum", "open": true, "required": true, "values": ["pantry", "fridge", "freezer"]},
+    {"name": "qty", "type": "number", "default": 1},
+    {"name": "unit", "type": "text"},
+    {"name": "expiry", "type": "date"},
+    {"name": "notes", "type": "text"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "tasks",
+  "title": "Tasks",
+  "item_label": "task",
+  "group_label": "project",
+  "subgroup_label": "module",
+  "statuses": {"open": "🔲 Open", "in-progress": "🔄 In progress", "done": "✅ Done", "blocked": "⛔ Blocked", "hold": "⏸️ On hold"},
+  "closed_statuses": ["done"],
+  "default_status": "open",
+  "priorities": {"p0": "🔥 Critical", "p1": "🔴 High", "p2": "🟡 Normal", "p3": "⚪ Low"},
+  "default_priority": "p2",
+  "extra_fields": []
+}

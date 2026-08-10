@@ -1,0 +1,20 @@
+{
+  "name": "domains",
+  "title": "Domains & DNS",
+  "key": "domain",
+  "sort": ["domain"],
+  "display": ["registrar", "hosting", "renewal"],
+  "export_columns": ["domain", "registrar", "hosting", "dns_provider", "mx", "renewal", "ssl", "owner", "notes"],
+  "fields": [
+    {"name": "domain", "type": "text", "required": true},
+    {"name": "registrar", "type": "text", "required": true, "desc": "GoDaddy / Cloudflare..."},
+    {"name": "dns_provider", "type": "text"},
+    {"name": "hosting", "type": "text", "desc": "Vercel / Hetzner..."},
+    {"name": "mx", "type": "text", "desc": "Mail provider — Google Workspace..."},
+    {"name": "ssl", "type": "text", "desc": "Let's Encrypt / managed"},
+    {"name": "renewal", "type": "date", "required": false, "desc": "Renewal date — fill in as soon as known ⚠️"},
+    {"name": "owner", "type": "text"},
+    {"name": "cost_yearly", "type": "number"},
+    {"name": "notes", "type": "text"}
+  ]
+}

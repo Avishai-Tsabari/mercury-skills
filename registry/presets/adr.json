@@ -1,0 +1,23 @@
+{
+  "name": "adr",
+  "title": "Architecture Decisions (ADR)",
+  "key": "id",
+  "sort": ["id"],
+  "group_by": "area",
+  "display": ["title", "status", "date"],
+  "export_columns": ["id", "title", "area", "status", "date", "decided_by", "rationale", "rejected"],
+  "fields": [
+    {"name": "id", "type": "text", "required": true, "desc": "ADR-001"},
+    {"name": "title", "type": "text", "required": true},
+    {"name": "area", "type": "enum", "open": true, "values": ["infra", "ai", "product", "security", "data"]},
+    {"name": "status", "type": "enum", "required": true,
+     "values": ["proposed", "accepted", "superseded", "rejected"],
+     "labels": {"proposed": "🤔 Proposed", "accepted": "✅ Accepted", "superseded": "🔁 Superseded", "rejected": "❌ Rejected"}},
+    {"name": "date", "type": "date", "required": true},
+    {"name": "decided_by", "type": "text"},
+    {"name": "rationale", "type": "text", "required": true, "desc": "Why"},
+    {"name": "rejected", "type": "text", "desc": "What was considered and rejected"},
+    {"name": "supersedes", "type": "text"},
+    {"name": "notes", "type": "text"}
+  ]
+}

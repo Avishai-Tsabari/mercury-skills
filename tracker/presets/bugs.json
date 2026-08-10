@@ -1,0 +1,18 @@
+{
+  "name": "bugs",
+  "title": "Bugs & Client Issues",
+  "item_label": "bug",
+  "group_label": "product",
+  "subgroup_label": "component",
+  "statuses": {"new": "🆕 New", "triaged": "🔍 Triaged", "in-progress": "🔄 In progress", "fixed": "✅ Fixed", "wontfix": "🚫 Won't fix", "cannot-reproduce": "❓ Cannot reproduce"},
+  "closed_statuses": ["fixed", "wontfix", "cannot-reproduce"],
+  "default_status": "new",
+  "priorities": {"sev1": "🔥 Critical", "sev2": "🔴 High", "sev3": "🟡 Medium", "sev4": "⚪ Low"},
+  "default_priority": "sev3",
+  "extra_fields": [
+    {"name": "client", "desc": "Which client reported it"},
+    {"name": "reporter", "desc": "Who reported it"},
+    {"name": "steps", "desc": "Reproduction steps"},
+    {"name": "version", "desc": "Version"}
+  ]
+}

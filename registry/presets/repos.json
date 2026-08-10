@@ -1,0 +1,18 @@
+{
+  "name": "repos",
+  "title": "Repositories",
+  "key": "slug",
+  "sort": ["slug"],
+  "display": ["github", "branch", "owner"],
+  "export_columns": ["slug", "github", "branch", "local_path", "owner", "stack", "purpose", "notes"],
+  "fields": [
+    {"name": "slug", "type": "text", "required": true},
+    {"name": "github", "type": "url", "required": true},
+    {"name": "branch", "type": "text", "required": true, "desc": "Working branch"},
+    {"name": "local_path", "type": "text"},
+    {"name": "owner", "type": "text", "required": true},
+    {"name": "stack", "type": "text"},
+    {"name": "purpose", "type": "text", "required": true},
+    {"name": "notes", "type": "text"}
+  ]
+}

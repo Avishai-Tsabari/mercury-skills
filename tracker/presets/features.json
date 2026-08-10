@@ -1,0 +1,16 @@
+{
+  "name": "features",
+  "title": "Feature Pipeline",
+  "item_label": "feature",
+  "group_label": "product",
+  "subgroup_label": "area",
+  "statuses": {"idea": "💡 Idea", "planned": "🗺️ Planned", "in-progress": "🔄 In development", "qa": "🧪 In QA", "released": "🚀 Released", "dropped": "🗑️ Dropped"},
+  "closed_statuses": ["released", "dropped"],
+  "default_status": "idea",
+  "priorities": {"p0": "🔥 Critical", "p1": "🔴 High", "p2": "🟡 Normal", "p3": "⚪ Low"},
+  "default_priority": "p2",
+  "extra_fields": [
+    {"name": "requested_by", "desc": "Who asked for it"},
+    {"name": "effort", "desc": "Effort estimate"}
+  ]
+}

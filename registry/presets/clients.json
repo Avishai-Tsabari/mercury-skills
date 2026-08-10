@@ -1,0 +1,25 @@
+{
+  "name": "clients",
+  "title": "Clients & Pilots",
+  "key": "slug",
+  "group_by": "vertical",
+  "sort": ["vertical", "slug"],
+  "display": ["name", "vertical", "stage", "owner"],
+  "export_columns": ["name", "vertical", "stage", "owner", "contact", "phone", "since", "notes"],
+  "fields": [
+    {"name": "slug", "type": "text", "required": true, "desc": "Short identifier"},
+    {"name": "name", "type": "text", "required": true, "desc": "Client/business name"},
+    {"name": "vertical", "type": "enum", "open": true, "required": true,
+     "values": ["retail", "services", "tech", "other"],
+     "labels": {"retail": "🛍️ Retail", "services": "🧰 Services", "tech": "💻 Tech", "other": "📦 Other"}},
+    {"name": "stage", "type": "enum", "required": true,
+     "values": ["lead", "pilot", "live", "paying", "churned"],
+     "labels": {"lead": "🌱 Lead", "pilot": "🧪 Pilot", "live": "🟢 Live", "paying": "💰 Paying", "churned": "⚪ Churned"}},
+    {"name": "owner", "type": "text", "desc": "Who leads it on our side"},
+    {"name": "contact", "type": "text", "desc": "Contact person"},
+    {"name": "phone", "type": "text"},
+    {"name": "since", "type": "date"},
+    {"name": "monthly_fee", "type": "number"},
+    {"name": "notes", "type": "text"}
+  ]
+}
