@@ -82,9 +82,16 @@ def load_data(d: Path):
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
 
 
+def _sort_component(v):
+    """Numbers sort numerically (before text); everything else as text."""
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return (0, v, "")
+    return (1, 0, str(v) if v is not None else "")
+
+
 def save_data(d: Path, schema, rows):
     keys = schema.get("sort") or [schema["key"]]
-    rows.sort(key=lambda r: tuple(str(r.get(k) or "") for k in keys))
+    rows.sort(key=lambda r: tuple(_sort_component(r.get(k)) for k in keys))
     d.mkdir(parents=True, exist_ok=True)
     (d / "data.json").write_text(
         json.dumps(rows, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
@@ -124,7 +131,7 @@ def coerce(f, raw):
     if t == "list":
         return [x.strip() for x in str(raw).split(",") if x.strip()]
     if t == "enum":
-        vals = f.get("values", [])
+        vals = f.setdefault("values", [])
         if raw not in vals:
             if f.get("open"):
                 vals.append(raw)          # open enum grows dynamically
@@ -286,7 +293,7 @@ def cmd_add(args):
             rec[f["name"]] = f["default"]
     rec.update(collect(schema, args))
     missing = [f["name"] for f in schema["fields"]
-               if f.get("required") and not rec.get(f["name"])]
+               if f.get("required") and rec.get(f["name"]) in (None, "", [])]
     if missing:
         die(f"Missing required fields: {', '.join(missing)}")
     rows.append(rec)

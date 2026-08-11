@@ -271,6 +271,8 @@ def cmd_update(args):
     sets = ", ".join(f"{f}=?" for f in changes) + ", updated_at=datetime('now')"
     if changes.get("status") in s.get("closed_statuses", []):
         sets += ", closed_at=datetime('now')"
+    elif changes.get("status"):
+        sets += ", closed_at=NULL"    # reopened — clear the stale close stamp
     con.execute(f"UPDATE items SET {sets} WHERE id=?", (*changes.values(), args.id))
     con.commit()
     print(f"✅ #{args.id} updated: " + ", ".join(changes))
