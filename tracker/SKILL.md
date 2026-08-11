@@ -72,6 +72,21 @@ python3 $T --dir $D delete 3 --yes  # ⚠️ permanent deletion
 `tasks` tasks · `bugs` bugs and client issues · `invoices` invoices and collection ·
 `features` feature pipeline
 
+### Preset resolution order
+
+`init --preset <name>` resolves `<name>.json` in this order — first match wins:
+
+1. `<workspace>/trackers/presets/<name>.json` — **space-local** presets, relative to the
+   working directory the engine runs from
+2. `<SKILL_DIR>/presets/<name>.json` — the built-ins listed above
+
+A space-local preset with the same name as a built-in shadows it. A missing preset
+lists every available name from both locations, tagged `[space]` / `[built-in]`.
+
+**Authoring a space-local preset:** drop a schema JSON (same format as `schema.json`,
+see the built-ins for examples) into `trackers/presets/`. The directory is only read
+on an explicit `--preset <name>` — other files there are ignored.
+
 ## Iron rules
 
 - 📊 **The tracker is the source of truth** — never keep statuses in the agent's memory. Always query.

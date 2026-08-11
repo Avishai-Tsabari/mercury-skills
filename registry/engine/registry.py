@@ -196,6 +196,28 @@ def fmt_row(schema, r):
     return f"  {str(r.get(k)):22s} {' · '.join(parts)}"
 
 
+# ---------- presets ----------
+
+def preset_dirs():
+    """Preset search path: space-local presets shadow built-ins."""
+    return [
+        (Path.cwd() / "registries" / "presets", "space"),
+        (Path(__file__).resolve().parent.parent / "presets", "built-in"),
+    ]
+
+
+def resolve_preset(name):
+    for d, _tag in preset_dirs():
+        p = d / f"{name}.json"
+        if p.exists():
+            return p
+    avail = []
+    for d, tag in preset_dirs():
+        if d.is_dir():
+            avail += [f"{x.stem} [{tag}]" for x in sorted(d.glob("*.json"))]
+    die(f"No preset '{name}'. Available: {', '.join(avail) or '(none)'}")
+
+
 # ---------- commands ----------
 
 def cmd_init(args):
@@ -203,10 +225,7 @@ def cmd_init(args):
     if (d / "schema.json").exists() and not args.force:
         die(f"A schema already exists at {d}. Use --force to overwrite.")
     if args.preset:
-        p = Path(__file__).resolve().parent.parent / "presets" / f"{args.preset}.json"
-        if not p.exists():
-            die(f"No preset '{args.preset}'. Available: "
-                f"{', '.join(sorted(x.stem for x in p.parent.glob('*.json')))}")
+        p = resolve_preset(args.preset)
         schema = json.loads(p.read_text(encoding="utf-8"))
     else:
         schema = {"name": args.name or d.name, "title": args.title or d.name,

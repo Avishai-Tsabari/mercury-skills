@@ -83,6 +83,22 @@ python3 $R --dir $D export --out CLIENTS.md
 `repos` repositories · `inventory` stock · `systems` systems and services ·
 `content` content assets
 
+### Preset resolution order
+
+`init --preset <name>` resolves `<name>.json` in this order — first match wins:
+
+1. `<workspace>/registries/presets/<name>.json` — **space-local** presets, relative to the
+   working directory the engine runs from
+2. `<SKILL_DIR>/presets/<name>.json` — the built-ins listed above
+
+A space-local preset with the same name as a built-in shadows it. A missing preset
+lists every available name from both locations, tagged `[space]` / `[built-in]`.
+
+**Authoring a space-local preset:** drop a schema JSON (same format as `schema.json`,
+see the built-ins for examples) into `registries/presets/`. The directory is only read
+on an explicit `--preset <name>` — other files there are ignored. Use space-local
+presets for domain flavor: translated titles and labels, extra fields, house conventions.
+
 ## Iron rules
 
 - 🔐 **Secrets are never stored in a registry** — only *where* they live and when they were last rotated.
